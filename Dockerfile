@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:edge
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -43,7 +43,6 @@ RUN apk --update add --no-cache openjdk8-jre="$JAVA_ALPINE_VERSION" expect && \
     rm /tmp/i2pinstall_0.9.39.jar /tmp/i2pinstall_0.9.39.jar.sha256 /tmp/i2pinstall.sh && \
     adduser -h /home/i2p -s /bin/ash i2p -D -G daemon && \
     chown -R i2p:daemon /i2p /home/i2p
-
 
 #RUN echo '@edge http://nl.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && \
 #    echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
