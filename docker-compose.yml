@@ -1,4 +1,4 @@
-version: '3.5'
+version: "3.5"
 
 services:
   i2p:
@@ -14,24 +14,21 @@ services:
       mode: global
       resources:
         limits:
-          cpus: '0.50'
+          cpus: "0.50"
           memory: 256M
       restart_policy:
         condition: on-failure
         delay: 5s
         max_attempts: 3
         window: 120s
-    # volumes:
-    #   - tor:/var/lib/tor
-    #   - squid:/var/cache/squid
+    volumes:
+      - i2p:/i2p
     networks:
       - i2p
     expose:
-      - 7651
-      - 7652
+      - 7657
     ports:
-      - 127.0.0.1:7651:7651
-      - 127.0.0.1:7652:7652
+      - 127.0.0.1:7657:7657
 
 networks:
   i2p:
@@ -39,6 +36,5 @@ networks:
     # driver: custom-driver-1
     name: i2p
 
-# volumes:
-#  tor:
-#  squid:
+volumes:
+  i2p:
