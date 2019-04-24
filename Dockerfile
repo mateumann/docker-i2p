@@ -10,7 +10,7 @@ LABEL maintainer="mateumann@gmail.com" \
     org.label-schema.build-date=$BUILD_DATE \
     org.label-schema.vcs-url="https://github.com/mateumann/docker-i2p.git" \
     org.label-schema.vcs-ref=$VCS_REF \
-    org.label-schema.docker.cmd="docker run -d --rm --publish 127.0.0.1:7657:7657 --name i2p mateumann/i2p" \
+    org.label-schema.docker.cmd="docker run -d --rm --publish 127.0.0.1:4444:4444 --publish 127.0.0.1:4445:4445 --publish 127.0.0.1:7657:7657 --name i2p mateumann/i2p" \
     org.label-schema.version="0.0.1" \
     org.label-schema.schema-version="1.0"
 #    com.microscaling.license="MIT" \
@@ -37,8 +37,8 @@ RUN apk --update add --no-cache openjdk8-jre="$JAVA_ALPINE_VERSION" expect && \
     adduser -h /home/i2p -s /bin/ash i2p -D -G daemon && \
     chown -R i2p:daemon /i2p /home/i2p
 
-EXPOSE 7657
+EXPOSE 4444 4445 7657
 
-VOLUME ["/i2p", "/home/i2p"]
+VOLUME ["/home/i2p"]
 
 CMD ["/entrypoint.sh"]

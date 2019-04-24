@@ -22,13 +22,17 @@ services:
         max_attempts: 3
         window: 120s
     volumes:
-      - i2p:/i2p
+      # - i2p:/i2p
       - home:/home/i2p
     networks:
       - i2p
     expose:
+      - 4444
+      - 4445
       - 7657
     ports:
+      - 127.0.0.1:4444:4444
+      - 127.0.0.1:4445:4445
       - 127.0.0.1:7657:7657
 
 networks:
@@ -38,5 +42,5 @@ networks:
     name: i2p
 
 volumes:
-  i2p:
+  # i2p:
   home:
