@@ -39,6 +39,6 @@ RUN apk --update add --no-cache openjdk8-jre="$JAVA_ALPINE_VERSION" expect && \
 
 EXPOSE 7657
 
-VOLUME ["/i2p"]
+VOLUME ["/i2p", "/home/i2p"]
 
 CMD ["/entrypoint.sh"]
