@@ -7,5 +7,3 @@ PID=`cat /tmp/router.pid`
 while kill -0 "$PID"; do
     sleep 1
 done
-
-echo "Container down"
