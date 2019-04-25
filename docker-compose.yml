@@ -9,6 +9,7 @@ services:
       # args:
       #   - GOVERSION=${GOVERSION:-1.10.1}
     container_name: i2p
+    hostname: i2p
     image: mateumann/i2p
     deploy:
       mode: global
