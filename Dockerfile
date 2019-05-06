@@ -23,8 +23,8 @@ ENV PATH $PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openj
 COPY i2pinstall* /tmp/
 COPY entrypoint.sh /
 
-ENV JAVA_VERSION 8u201
-ENV JAVA_ALPINE_VERSION 8.201.08-r1
+ENV JAVA_VERSION 8u212
+ENV JAVA_ALPINE_VERSION 8.212.04-r0
 
 RUN apk --update add --no-cache openjdk8-jre="$JAVA_ALPINE_VERSION" expect && \
     wget http://download.i2p2.no/releases/0.9.39/i2pinstall_0.9.39.jar -O /tmp/i2pinstall_0.9.39.jar && \
