@@ -17,18 +17,12 @@ LABEL maintainer="mateumann@gmail.com" \
 
 ENV LANG C.UTF-8
 
-ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk/jre
-ENV PATH $PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
-
 COPY i2pinstall* /tmp/
 COPY entrypoint.sh /
 
-ENV JAVA_VERSION 8u212
-ENV JAVA_ALPINE_VERSION 8.212.04-r0
-
-RUN apk --update add --no-cache openjdk8-jre="$JAVA_ALPINE_VERSION" expect && \
+WORKDIR /tmp
+RUN apk --update add --no-cache openjdk8-jre=8.212.04-r0 expect=5.45.4-r0 && \
     wget http://download.i2p2.no/releases/0.9.39/i2pinstall_0.9.39.jar -O /tmp/i2pinstall_0.9.39.jar && \
-    cd /tmp && \
     sha256sum -c /tmp/i2pinstall_0.9.39.jar.sha256 && \
     /tmp/i2pinstall.sh && \
     rm /tmp/i2pinstall_0.9.39.jar /tmp/i2pinstall_0.9.39.jar.sha256 /tmp/i2pinstall.sh && \
