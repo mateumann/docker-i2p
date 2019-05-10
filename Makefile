@@ -12,7 +12,8 @@ release: docker_build docker_push output
 default: docker_build output
 
 docker_build:
-	@docker build \
+	DOCKER_BUILDKIT=1 \
+	docker build \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 		--build-arg VCS_REF=$(GIT_COMMIT) \
 		-t $(DOCKER_IMAGE):$(GIT_COMMIT) .
