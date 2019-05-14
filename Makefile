@@ -16,6 +16,7 @@ docker_build:
 	docker build \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 		--build-arg VCS_REF=$(GIT_COMMIT) \
+		--squash \
 		-t $(DOCKER_IMAGE):$(GIT_COMMIT) .
 
 docker_push:
