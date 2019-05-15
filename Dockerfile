@@ -23,10 +23,10 @@ COPY entrypoint.sh /
 
 WORKDIR /tmp
 RUN apk --update add --no-cache openjdk8-jre=8.212.04-r0 expect=5.45.4-r0 && \
-    wget http://download.i2p2.no/releases/0.9.39/i2pinstall_0.9.39.jar -O /tmp/i2pinstall_0.9.39.jar && \
-    sha256sum -c /tmp/i2pinstall_0.9.39.jar.sha256 && \
+    wget http://download.i2p2.no/releases/0.9.40/i2pinstall_0.9.40.jar -O /tmp/i2pinstall_0.9.40.jar && \
+    sha256sum -c /tmp/i2pinstall_0.9.40.jar.sha256 && \
     /tmp/i2pinstall.sh && \
-    rm /tmp/i2pinstall_0.9.39.jar /tmp/i2pinstall_0.9.39.jar.sha256 /tmp/i2pinstall.sh && \
+    rm /tmp/i2pinstall_0.9.40.jar /tmp/i2pinstall_0.9.40.jar.sha256 /tmp/i2pinstall.sh && \
     mv /i2p/clients.config /i2p/clients.config.orig && \
     sed "s/^clientApp\.0\.args=7657/#clientApp.0.args=7657/; s/^#clientApp.0.args=7657 0\.0\.0\.0/clientApp.0.args=7657 0.0.0.0/; " /i2p/clients.config.orig > /i2p/clients.config && \
     adduser -h /home/i2p -s /bin/ash i2p -D -G daemon && \

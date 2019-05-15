@@ -1,5 +1,5 @@
 #!/usr/bin/expect -f
-spawn java -jar /tmp/i2pinstall_0.9.39.jar -console
+spawn java -jar /tmp/i2pinstall_0.9.40.jar -console
 expect "press 1 to continue, 2 to quit, 3 to redisplay"
 send -- "1\r"
 expect "Select target path"
