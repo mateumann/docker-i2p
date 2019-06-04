@@ -23,6 +23,7 @@ COPY entrypoint.sh /
 
 WORKDIR /tmp
 RUN apk --update add --no-cache openjdk8-jre=8.212.04-r0 expect=5.45.4-r0 && \
+    rm -rf /var/cache/apk/* && \
     wget http://download.i2p2.no/releases/0.9.40/i2pinstall_0.9.40.jar -O /tmp/i2pinstall_0.9.40.jar && \
     sha256sum -c /tmp/i2pinstall_0.9.40.jar.sha256 && \
     /tmp/i2pinstall.sh && \
