@@ -36,4 +36,4 @@ EXPOSE 4444 4445 7657
 
 VOLUME ["/home/i2p"]
 
-CMD ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
