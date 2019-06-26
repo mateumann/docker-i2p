@@ -1,6 +1,6 @@
 #!/bin/ash
 
-su - i2p /i2p/runplain.sh
+/i2p/runplain.sh
 
 # wait for router 
 PID=`cat /tmp/router.pid`

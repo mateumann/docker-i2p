@@ -32,6 +32,8 @@ RUN apk --update add --no-cache openjdk8-jre=8.212.04-r0 expect=5.45.4-r0 && \
     adduser -h /home/i2p -s /bin/ash i2p -D -G daemon && \
     chown -R i2p:daemon /i2p /home/i2p
 
+USER i2p
+
 EXPOSE 4444 4445 7657
 
 VOLUME ["/home/i2p"]
