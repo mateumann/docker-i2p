@@ -1,9 +1,17 @@
 #!/usr/bin/expect -f
-spawn java -jar /tmp/i2pinstall_0.9.40.jar -console
-expect "press 1 to continue, 2 to quit, 3 to redisplay"
+spawn java -jar /tmp/i2pinstall_0.9.42.jar -console
+expect "Input selection:"
+send -- "0\r"
+expect "Press 1 to continue, 2 to quit, 3 to redisplay"
 send -- "1\r"
-expect "Select target path"
+expect "Press 1 to continue, 2 to quit, 3 to redisplay"
+send -- "1\r"
+expect "Select the installation path"
 send -- "/i2p\r"
-expect "press 1 to continue, 2 to quit, 3 to redisplay"
+expect "Enter O for OK, C to Cancel:"
+send -- "O\r"
+expect "Press 1 to continue, 2 to quit, 3 to redisplay"
+send -- "1\r"
+expect "Press 1 to continue, 2 to quit, 3 to redisplay"
 send -- "1\r"
 expect "#"
