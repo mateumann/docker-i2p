@@ -15,21 +15,22 @@ LABEL maintainer="mateumann@gmail.com" \
     org.label-schema.schema-version="1.0" \
     com.microscaling.license="MIT"
 
-#ENV LANG C.UTF-8
 ENV LANG C
-#ENV LC_ALL C.UTF-8
 ENV LC_ALL C
 
 COPY i2pinstall* /tmp/
 COPY entrypoint.sh /
 
-WORKDIR /tmp
+WORKDIR /i2p
+
 RUN apk --update add --no-cache openjdk8-jre=8.212.04-r1 expect=5.45.4-r0 && \
     rm -rf /var/cache/apk/* && \
     wget https://download.i2p2.de/releases/0.9.42/i2pinstall_0.9.42.jar -O /tmp/i2pinstall_0.9.42.jar && \
     sha256sum -c /tmp/i2pinstall_0.9.42.jar.sha256 && \
     /tmp/i2pinstall.sh && \
     rm /tmp/i2pinstall_0.9.42.jar /tmp/i2pinstall_0.9.42.jar.sha256 /tmp/i2pinstall.sh && \
+    cp /i2p/runplain.sh /i2p/runplain.sh.orig && \
+    sed "s/%SYSTEM_java_io_tmpdir/\/var\/tmp/" /i2p/runplain.sh.orig > /i2p/runplain.sh && \
     mv /i2p/clients.config /i2p/clients.config.orig && \
     mv /i2p/i2ptunnel.config /i2p/i2ptunnel.config.orig && \
     sed "s/^clientApp\.0\.args=7657/#clientApp.0.args=7657/; s/^#clientApp.0.args=7657 0\.0\.0\.0/clientApp.0.args=7657 0.0.0.0/" /i2p/clients.config.orig > /i2p/clients.config && \
@@ -44,4 +45,3 @@ EXPOSE 4444 4445 7657 7658
 VOLUME ["/home/i2p"]
 
 ENTRYPOINT ["/entrypoint.sh"]
-#ENTRYPOINT ["/bin/ash"]
