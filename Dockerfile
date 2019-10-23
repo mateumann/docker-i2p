@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.0-experimental
-FROM alpine:3.10.2
+FROM alpine:3.10.3
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -11,7 +11,7 @@ LABEL maintainer="mateumann@gmail.com" \
     org.label-schema.build-date=$BUILD_DATE \
     org.label-schema.vcs-url="https://github.com/mateumann/docker-i2p.git" \
     org.label-schema.vcs-ref=$VCS_REF \
-    org.label-schema.version="0.3.0" \
+    org.label-schema.version="0.3.1" \
     org.label-schema.schema-version="1.0" \
     com.microscaling.license="MIT"
 
@@ -23,7 +23,7 @@ COPY entrypoint.sh /
 
 WORKDIR /i2p
 
-RUN apk --update add --no-cache openjdk8-jre=8.212.04-r1 expect=5.45.4-r0 && \
+RUN apk --update add --no-cache openjdk8-jre=8.222.10-r0 expect=5.45.4-r0 && \
     rm -rf /var/cache/apk/* && \
     wget https://download.i2p2.de/releases/0.9.42/i2pinstall_0.9.42.jar -O /tmp/i2pinstall_0.9.42.jar && \
     sha256sum -c /tmp/i2pinstall_0.9.42.jar.sha256 && \
