@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.0-experimental
-FROM alpine:3.11.2
+FROM alpine:3.12
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -23,12 +23,13 @@ COPY entrypoint.sh /
 
 WORKDIR /i2p
 
-RUN apk --update add --no-cache openjdk8-jre=8.232.09-r0 expect=5.45.4-r0 && \
+RUN apk --update add --no-cache openjdk8-jre=8.252.09-r0 expect=5.45.4-r0 && \
     rm -rf /var/cache/apk/* && \
-    wget https://download.i2p2.de/releases/0.9.44/i2pinstall_0.9.44.jar -O /tmp/i2pinstall_0.9.44.jar && \
-    sha256sum -c /tmp/i2pinstall_0.9.44.jar.sha256 && \
+    wget --no-check-certificate https://download.i2p2.de/releases/0.9.47/i2pinstall_0.9.47.jar -O /tmp/i2pinstall_0.9.47.jar && \
+    ls -l /tmp/ && \
+    sha256sum -c /tmp/i2pinstall_0.9.47.jar.sha256 && \
     /tmp/i2pinstall.sh && \
-    rm /tmp/i2pinstall_0.9.44.jar /tmp/i2pinstall_0.9.44.jar.sha256 /tmp/i2pinstall.sh && \
+    rm /tmp/i2pinstall_0.9.47.jar /tmp/i2pinstall_0.9.47.jar.sha256 /tmp/i2pinstall.sh && \
     cp /i2p/runplain.sh /i2p/runplain.sh.orig && \
     sed "s/%SYSTEM_java_io_tmpdir/\/var\/tmp/" /i2p/runplain.sh.orig > /i2p/runplain.sh && \
     mv /i2p/clients.config /i2p/clients.config.orig && \
