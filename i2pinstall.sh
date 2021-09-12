@@ -1,5 +1,5 @@
 #!/usr/bin/expect -f
-spawn java -jar /tmp/i2pinstall_0.9.47.jar -console
+spawn java -jar /tmp/i2pinstall_1.5.0.jar -console
 expect "Input selection:"
 send -- "0\r"
 expect "Press 1 to continue, 2 to quit, 3 to redisplay"

@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.0-experimental
-FROM alpine:3.12
+FROM alpine:3.14
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -11,7 +11,7 @@ LABEL maintainer="mateumann@gmail.com" \
     org.label-schema.build-date=$BUILD_DATE \
     org.label-schema.vcs-url="https://github.com/mateumann/docker-i2p.git" \
     org.label-schema.vcs-ref=$VCS_REF \
-    org.label-schema.version="0.4.0" \
+    org.label-schema.version="0.5.0" \
     org.label-schema.schema-version="1.0" \
     com.microscaling.license="MIT"
 
@@ -23,13 +23,13 @@ COPY entrypoint.sh /
 
 WORKDIR /i2p
 
-RUN apk --update add --no-cache openjdk8-jre=8.252.09-r0 expect=5.45.4-r0 && \
+RUN apk --update add --no-cache openjdk8-jre=8.282.08-r1 expect=5.45.4-r0 && \
     rm -rf /var/cache/apk/* && \
-    wget --no-check-certificate https://download.i2p2.de/releases/0.9.47/i2pinstall_0.9.47.jar -O /tmp/i2pinstall_0.9.47.jar && \
+    wget --no-check-certificate https://download.i2p2.de/releases/1.5.0/i2pinstall_1.5.0.jar -O /tmp/i2pinstall_1.5.0.jar && \
     ls -l /tmp/ && \
-    sha256sum -c /tmp/i2pinstall_0.9.47.jar.sha256 && \
+    sha256sum -c /tmp/i2pinstall_1.5.0.jar.sha256 && \
     /tmp/i2pinstall.sh && \
-    rm /tmp/i2pinstall_0.9.47.jar /tmp/i2pinstall_0.9.47.jar.sha256 /tmp/i2pinstall.sh && \
+    rm /tmp/i2pinstall_1.5.0.jar /tmp/i2pinstall_1.5.0.jar.sha256 /tmp/i2pinstall.sh && \
     cp /i2p/runplain.sh /i2p/runplain.sh.orig && \
     sed "s/%SYSTEM_java_io_tmpdir/\/var\/tmp/" /i2p/runplain.sh.orig > /i2p/runplain.sh && \
     mv /i2p/clients.config /i2p/clients.config.orig && \
