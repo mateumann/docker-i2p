@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.0-experimental
-FROM alpine:3.14
+FROM alpine:3.16
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -23,9 +23,9 @@ COPY entrypoint.sh /
 
 WORKDIR /i2p
 
-RUN apk --update add --no-cache openjdk8-jre=8.282.08-r1 expect=5.45.4-r0 && \
+RUN apk --update add --no-cache openjdk8-jre=8.345.01-r0 expect=5.45.4-r2 && \
     rm -rf /var/cache/apk/* && \
-    wget --no-check-certificate https://download.i2p2.de/releases/1.5.0/i2pinstall_1.5.0.jar -O /tmp/i2pinstall_1.5.0.jar && \
+    wget --no-check-certificate https://files.i2p-projekt.de/1.5.0/i2pinstall_1.5.0.jar -O /tmp/i2pinstall_1.5.0.jar && \
     ls -l /tmp/ && \
     sha256sum -c /tmp/i2pinstall_1.5.0.jar.sha256 && \
     /tmp/i2pinstall.sh && \
