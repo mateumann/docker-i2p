@@ -3,7 +3,7 @@ GIT_COMMIT = $(strip $(shell git rev-parse --short HEAD))
 DOCKER_IMAGE ?= mateumann/i2p
 DOCKER_TAG = latest
 #I2P_VERSION = $(strip $(shell grep 'wget.*download\.i2p2' Dockerfile | sed -r "s/.*i2pinstall_([0-9.]+)\.jar.*/\\1/"))
-I2P_VERSION = 1.5.0
+I2P_VERSION = 1.9.0
 # Build Docker image
 build: docker_build output
 
